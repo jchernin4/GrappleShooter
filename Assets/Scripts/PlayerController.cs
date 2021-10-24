@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : NetworkBehaviour {
     float grappleDistance = 10f;
     float normalSpeed = 60f;
     float grappleSpeed;
@@ -10,18 +11,22 @@ public class PlayerController : MonoBehaviour {
     float accelerationModifer = 5f;
     float rotationSpeed = 100f;
     private float maxWidthLr = 0.06f;
-    
-    private int health = 100;
 
+    private int health = 100;
 
     LineRenderer lr;
     GameObject grappleObject;
 
-    public Rigidbody rb;
+    Rigidbody rb;
 
     void Start() {
+        if (!isLocalPlayer) {
+            Destroy(GetComponent<Rigidbody>());
+            return;
+        }
+
         rb = GetComponent<Rigidbody>();
-        lr = GetComponent<LineRenderer>();
+        lr = GetComponentInChildren<LineRenderer>();
         lr.positionCount = 2;
         grappleSpeed = normalSpeed + 10f;
         health = 100;
@@ -36,6 +41,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+        if (!isLocalPlayer) {
+            return;
+        }
+
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
@@ -55,6 +64,7 @@ public class PlayerController : MonoBehaviour {
 
         if (grappleObject == null) {
             lr.enabled = false;
+            
         } else {
             lr.enabled = true;
             lr.SetPosition(0, transform.position);
@@ -64,19 +74,19 @@ public class PlayerController : MonoBehaviour {
             lr.endWidth = lr.startWidth - .07f;
             transform.LookAt(grappleObject.transform.position);
             if (Input.GetKeyDown(KeyCode.Q)) {
-                rb.AddForce(transform.right * rotationSpeed, ForceMode.Force);
+                rb.AddForce(-transform.right * rotationSpeed, ForceMode.Force);
             }
 
             if (Input.GetKeyDown(KeyCode.E)) {
-                rb.AddForce(-transform.right * rotationSpeed, ForceMode.Force);
+                rb.AddForce(transform.right * rotationSpeed, ForceMode.Force);
             }
 
             if (Input.GetKeyUp(KeyCode.Q)) {
-                rb.AddForce(-transform.right * rotationSpeed, ForceMode.Force);
+                rb.AddForce(transform.right * rotationSpeed, ForceMode.Force);
             }
 
             if (Input.GetKeyUp(KeyCode.E)) {
-                rb.AddForce(transform.right * rotationSpeed, ForceMode.Force);
+                rb.AddForce(-transform.right * rotationSpeed, ForceMode.Force);
             }
 
             rb.AddForce(
