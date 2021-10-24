@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-public class PlayerController : NetworkBehaviour {
+public class PlayerControl : NetworkBehaviour {
     float grappleDistance = 10f;
     float normalSpeed = 60f;
     float grappleSpeed;

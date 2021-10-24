@@ -129,10 +129,10 @@ GameObject:
   - component: {fileID: 1487263198173533308}
   - component: {fileID: 8172752767400709329}
   - component: {fileID: 6794299647465534596}
-  - component: {fileID: 4791816610034401006}
+  - component: {fileID: 4627943364986306387}
   - component: {fileID: 1167628231066676553}
   - component: {fileID: 1512529755768029436}
-  - component: {fileID: 1046689875514177731}
+  - component: {fileID: 3758915014154418683}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -263,7 +263,7 @@ MonoBehaviour:
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
   target: {fileID: 2988688421344663040}
---- !u!114 &4791816610034401006
+--- !u!114 &4627943364986306387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,19 +312,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 4
   m_CollisionDetection: 1
---- !u!135 &1046689875514177731
+--- !u!135 &3758915014154418683
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2988688420741402414}
-  m_Material: {fileID: 13400000, guid: e219641b2c4e48e4cae9fea31911f333, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2988688421001841734
 GameObject:
   m_ObjectHideFlags: 0

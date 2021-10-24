@@ -11,7 +11,7 @@ public class BulletScript : MonoBehaviour {
         }
 
         if (collision.gameObject.CompareTag("Player")) {
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(25);
+            collision.gameObject.GetComponent<PlayerControl>().TakeDamage(25);
         }
 
         /*Vector3 pos = transform.forward.normalized;
