@@ -29,11 +29,13 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage(int amount) {
         health -= amount;
+
+        if (health <= 0) {
+            Destroy(transform.parent.gameObject);
+        }
     }
 
     void Update() {
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
