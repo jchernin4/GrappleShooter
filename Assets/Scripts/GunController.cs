@@ -8,6 +8,7 @@ public class GunController : NetworkBehaviour {
     public Transform shooterSphere;
     public GameObject bulletPrefab;
     public float bulletSpeed = 50f;
+    public float bulletLife = 10f;
     public GameObject bulletExit;
 
     void Update() {
@@ -29,8 +30,7 @@ public class GunController : NetworkBehaviour {
         }
         
         if (Input.GetMouseButtonDown(0)) {
-            GameObject spawnedBullet = Instantiate(bulletPrefab, bulletExit.transform.position, bulletExit.transform.rotation);
-            spawnedBullet.GetComponent<Rigidbody>().AddForce(spawnedBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
+            CmdShootBullet();
         }
 
         /* Vector3 mousePos = Input.mousePosition;
@@ -40,5 +40,17 @@ public class GunController : NetworkBehaviour {
 
         transform.LookAt (mousePos);
        */
+    }
+
+    [Command]
+    void CmdShootBullet() {
+        RpcShootBullet();
+    }
+
+    [ClientRpc]
+    void RpcShootBullet() {
+        GameObject spawnedBullet = Instantiate(bulletPrefab, bulletExit.transform.position, bulletExit.transform.rotation);
+        spawnedBullet.GetComponent<Rigidbody>().AddForce(spawnedBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
+        Destroy(spawnedBullet, bulletLife);
     }
 }

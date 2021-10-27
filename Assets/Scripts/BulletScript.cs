@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour {
+public class BulletScript : NetworkBehaviour {
     public ParticleSystem impactSystem;
 
     void OnCollisionEnter(Collision collision) {
