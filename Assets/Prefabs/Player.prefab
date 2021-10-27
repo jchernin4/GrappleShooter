@@ -277,6 +277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  health: 100
+  score: 0
 --- !u!114 &1167628231066676553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +297,7 @@ MonoBehaviour:
   shooterSphere: {fileID: 2988688420274698217}
   bulletPrefab: {fileID: 2293893666836702342, guid: eb638386ac5954a4a8aed686d4f0e15f, type: 3}
   bulletSpeed: 50
+  bulletLife: 10
   bulletExit: {fileID: 2988688421323800229}
 --- !u!54 &1512529755768029436
 Rigidbody:
@@ -432,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2988688421323800229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

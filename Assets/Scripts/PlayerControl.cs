@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : NetworkBehaviour {
     float grappleDistance = 10f;
@@ -12,7 +13,16 @@ public class PlayerControl : NetworkBehaviour {
     float rotationSpeed = 100f;
     private float maxWidthLr = 0.06f;
 
-    private int health = 100;
+    [SyncVar]
+    public int health = 100;
+
+    [SyncVar(hook = nameof(OnScoreChanged))]
+    public int score = 0;
+
+    void OnScoreChanged(int oldScore, int newScore) {
+        Text scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        scoreText.text = "Score: " + newScore;
+    }
 
     LineRenderer lr;
     GameObject grappleObject;
